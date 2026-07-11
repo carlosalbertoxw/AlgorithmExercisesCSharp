@@ -1,14 +1,14 @@
-﻿
+using AlgorithmExercises.Stacks.BaseballGame;
 using Xunit;
 
-namespace AlgorithmExercises.Test.BaseballGame
+namespace AlgorithmExercises.Tests.Stacks
 {
-    public class BaseballGameTest
+    public class BaseballGameTests
     {
         [Fact]
         public void Test_AllNumbers()
         {
-            var game = new Exercises.BaseballGame.BaseballGame();
+            var game = new Solution();
             string[] ops = { "5", "2", "3" };
             int result = game.CalPoints(ops);
             Assert.Equal(10, result); // 5 + 2 + 3
@@ -17,7 +17,7 @@ namespace AlgorithmExercises.Test.BaseballGame
         [Fact]
         public void Test_WithAddition()
         {
-            var game = new Exercises.BaseballGame.BaseballGame();
+            var game = new Solution();
             string[] ops = { "5", "-2", "4", "+", "3" };
             int result = game.CalPoints(ops);
             Assert.Equal(12, result); // 5, -2, 4, (4 + -2 = 2), 3 → sum = 12
@@ -26,7 +26,7 @@ namespace AlgorithmExercises.Test.BaseballGame
         [Fact]
         public void Test_WithDouble()
         {
-            var game = new Exercises.BaseballGame.BaseballGame();
+            var game = new Solution();
             string[] ops = { "5", "D" };
             int result = game.CalPoints(ops);
             Assert.Equal(15, result); // 5, 10 → sum = 15
@@ -35,7 +35,7 @@ namespace AlgorithmExercises.Test.BaseballGame
         [Fact]
         public void Test_WithCancel()
         {
-            var game = new Exercises.BaseballGame.BaseballGame();
+            var game = new Solution();
             string[] ops = { "5", "2", "C" };
             int result = game.CalPoints(ops);
             Assert.Equal(5, result); // 5, 2 (then remove 2) → 5
@@ -44,7 +44,7 @@ namespace AlgorithmExercises.Test.BaseballGame
         [Fact]
         public void Test_MixedOperations()
         {
-            var game = new Exercises.BaseballGame.BaseballGame();
+            var game = new Solution();
             string[] ops = { "5", "-2", "4", "C", "D", "9", "+", "+" };
             int result = game.CalPoints(ops);
             Assert.Equal(27, result);
@@ -57,7 +57,7 @@ namespace AlgorithmExercises.Test.BaseballGame
         [Fact]
         public void Test_EmptyInput()
         {
-            var game = new Exercises.BaseballGame.BaseballGame();
+            var game = new Solution();
             string[] ops = { };
             int result = game.CalPoints(ops);
             Assert.Equal(0, result);

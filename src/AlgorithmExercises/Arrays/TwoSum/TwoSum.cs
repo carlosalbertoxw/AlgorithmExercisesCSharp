@@ -1,10 +1,15 @@
-﻿/*
- * URL Problem: https://leetcode.com/problems/two-sum/
- */
-namespace AlgorithmExercises.Exercises.TwoSum
+namespace AlgorithmExercises.Arrays.TwoSum
 {
+    /// <summary>
+    /// LeetCode 1. Two Sum — https://leetcode.com/problems/two-sum/
+    /// </summary>
     public class Solution
     {
+        /// <summary>
+        /// Devuelve los índices de los dos números que suman <paramref name="target"/>,
+        /// o un arreglo vacío si no existe solución.
+        /// Complejidad: O(n) tiempo, O(n) espacio (una sola pasada con diccionario).
+        /// </summary>
         public int[] TwoSum(int[] nums, int target)
         {
             var dict = new Dictionary<int, int>();
@@ -21,7 +26,7 @@ namespace AlgorithmExercises.Exercises.TwoSum
                     dict[nums[i]] = i;
                 }
             }
-            return new int[] { };
+            return Array.Empty<int>();
         }
     }
 }

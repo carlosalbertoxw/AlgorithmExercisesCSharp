@@ -1,10 +1,16 @@
-﻿/*
-    URL Problem: https://leetcode.com/problems/two-sum-less-than-k/
-*/
-namespace AlgorithmExercises.Exercises.TwoSumLessThan
+namespace AlgorithmExercises.Arrays.TwoSumLessThan
 {
-    public class Solution2
+    /// <summary>
+    /// LeetCode 1099. Two Sum Less Than K — https://leetcode.com/problems/two-sum-less-than-k/
+    /// Solución con dos punteros sobre el arreglo ordenado.
+    /// Complejidad: O(n log n) tiempo (por el ordenamiento), O(1) espacio adicional.
+    /// </summary>
+    public class TwoPointersSolution
     {
+        /// <summary>
+        /// Devuelve la suma máxima de dos elementos distintos que sea menor que <paramref name="K"/>,
+        /// o -1 si no existe o si la entrada viola las restricciones del problema.
+        /// </summary>
         public static int TwoSumLessThan(int[] A, int K)
         {
             if (A.Length < 1 || A.Length > 100 || K < 1 || K > 2000)
@@ -35,8 +41,18 @@ namespace AlgorithmExercises.Exercises.TwoSumLessThan
             return S;
         }
     }
-    public class Solution1
+
+    /// <summary>
+    /// LeetCode 1099. Two Sum Less Than K — https://leetcode.com/problems/two-sum-less-than-k/
+    /// Solución de fuerza bruta comparando todos los pares.
+    /// Complejidad: O(n²) tiempo, O(1) espacio adicional.
+    /// </summary>
+    public class BruteForceSolution
     {
+        /// <summary>
+        /// Devuelve la suma máxima de dos elementos distintos que sea menor que <paramref name="K"/>,
+        /// o -1 si no existe o si la entrada viola las restricciones del problema.
+        /// </summary>
         public static int TwoSumLessThan(int[] A, int K)
         {
             if (A.Length < 1 || A.Length > 100 || K < 1 || K > 2000)
@@ -62,5 +78,4 @@ namespace AlgorithmExercises.Exercises.TwoSumLessThan
             return S;
         }
     }
-    
 }
