@@ -1,66 +1,18 @@
 using AlgorithmExercises.Stacks.BaseballGame;
-using Xunit;
 
-namespace AlgorithmExercises.Tests.Stacks
+namespace AlgorithmExercises.Tests.Stacks;
+
+public class BaseballGameTests
 {
-    public class BaseballGameTests
+    [Theory]
+    [InlineData(new[] { "5", "2", "3" }, 10)]                          // 5 + 2 + 3
+    [InlineData(new[] { "5", "-2", "4", "+", "3" }, 12)]               // 5, -2, 4, 2, 3
+    [InlineData(new[] { "5", "D" }, 15)]                               // 5, 10
+    [InlineData(new[] { "5", "2", "C" }, 5)]                           // 5 (se cancela el 2)
+    [InlineData(new[] { "5", "-2", "4", "C", "D", "9", "+", "+" }, 27)] // 5, -2, -4, 9, 5, 14
+    [InlineData(new string[0], 0)]                                     // sin operaciones
+    public void CalPoints_ReturnsSumOfScores(string[] operations, int expected)
     {
-        [Fact]
-        public void Test_AllNumbers()
-        {
-            var game = new Solution();
-            string[] ops = { "5", "2", "3" };
-            int result = game.CalPoints(ops);
-            Assert.Equal(10, result); // 5 + 2 + 3
-        }
-
-        [Fact]
-        public void Test_WithAddition()
-        {
-            var game = new Solution();
-            string[] ops = { "5", "-2", "4", "+", "3" };
-            int result = game.CalPoints(ops);
-            Assert.Equal(12, result); // 5, -2, 4, (4 + -2 = 2), 3 → sum = 12
-        }
-
-        [Fact]
-        public void Test_WithDouble()
-        {
-            var game = new Solution();
-            string[] ops = { "5", "D" };
-            int result = game.CalPoints(ops);
-            Assert.Equal(15, result); // 5, 10 → sum = 15
-        }
-
-        [Fact]
-        public void Test_WithCancel()
-        {
-            var game = new Solution();
-            string[] ops = { "5", "2", "C" };
-            int result = game.CalPoints(ops);
-            Assert.Equal(5, result); // 5, 2 (then remove 2) → 5
-        }
-
-        [Fact]
-        public void Test_MixedOperations()
-        {
-            var game = new Solution();
-            string[] ops = { "5", "-2", "4", "C", "D", "9", "+", "+" };
-            int result = game.CalPoints(ops);
-            Assert.Equal(27, result);
-            // Steps:
-            // 5, -2, 4 → C removes 4
-            // D = -4, 9, + = -4 + 9 = 5, + = 9 + 5 = 14
-            // Final = 5 -2 -4 9 5 14 = 27
-        }
-
-        [Fact]
-        public void Test_EmptyInput()
-        {
-            var game = new Solution();
-            string[] ops = { };
-            int result = game.CalPoints(ops);
-            Assert.Equal(0, result);
-        }
+        Assert.Equal(expected, new Solution().CalPoints(operations));
     }
 }

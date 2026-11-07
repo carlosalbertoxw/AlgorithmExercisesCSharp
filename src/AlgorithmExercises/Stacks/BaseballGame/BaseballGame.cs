@@ -1,39 +1,36 @@
-namespace AlgorithmExercises.Stacks.BaseballGame
+namespace AlgorithmExercises.Stacks.BaseballGame;
+
+/// <summary>
+/// LeetCode 682. Baseball Game — https://leetcode.com/problems/baseball-game/
+/// </summary>
+public class Solution
 {
     /// <summary>
-    /// LeetCode 682. Baseball Game — https://leetcode.com/problems/baseball-game/
+    /// Calcula la suma de los puntajes tras aplicar las operaciones:
+    /// número (anota), "+" (suma de los dos últimos), "D" (doble del último), "C" (cancela el último).
+    /// Complejidad: O(n) tiempo, O(n) espacio.
     /// </summary>
-    public class Solution
+    public int CalPoints(string[] operations)
     {
-        /// <summary>
-        /// Calcula la suma de los puntajes tras aplicar las operaciones:
-        /// número (anota), "+" (suma de los dos últimos), "D" (doble del último), "C" (cancela el último).
-        /// Complejidad: O(n) tiempo, O(n) espacio.
-        /// </summary>
-        public int CalPoints(string[] ops)
+        var scores = new List<int>();
+        foreach (string op in operations)
         {
-            List<int> points = new List<int>();
-            for (int i = 0; i < ops.Length; i++)
+            switch (op)
             {
-                if (ops[i] == "+")
-                {
-                    points.Add(points[points.Count - 1] + points[points.Count - 2]);
-                }
-                if (ops[i] == "D")
-                {
-                    points.Add(points[points.Count - 1] * 2);
-                }
-                if (ops[i] == "C")
-                {
-                    points.RemoveAt(points.Count - 1);
-                }
-                int result;
-                if (int.TryParse(ops[i], out result))
-                {
-                    points.Add(result);
-                }
+                case "+":
+                    scores.Add(scores[^1] + scores[^2]);
+                    break;
+                case "D":
+                    scores.Add(scores[^1] * 2);
+                    break;
+                case "C":
+                    scores.RemoveAt(scores.Count - 1);
+                    break;
+                default:
+                    scores.Add(int.Parse(op));
+                    break;
             }
-            return points.Sum();
         }
+        return scores.Sum();
     }
 }
